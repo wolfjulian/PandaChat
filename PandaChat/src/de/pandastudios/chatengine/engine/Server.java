@@ -8,50 +8,47 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
-public class Server {
+public class Server
+{
 	ServerSocket server;
 	Socket client;
 	ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
 
-	public Server() {
+	public Server()
+	{
 	}
-	
-	public void startServer(int port, DefaultListModel nachrichten)
+
+	public void broadcast(String message)
+	{
+		for (Proxy p : proxylist)
+		{
+			p.writeMessage(message);
+		}
+	}
+
+	public void startServer(int port, DefaultListModel messages)
 	{
 		try
 		{
 			server = new ServerSocket(port);
-			JOptionPane.showMessageDialog(null,"Server gestartet","", JOptionPane.INFORMATION_MESSAGE);
-			//server.setSoTimeout(1000);
-			
-			while(!Thread.currentThread().isInterrupted())
+			JOptionPane.showMessageDialog(null, "Server Up", "", JOptionPane.INFORMATION_MESSAGE);
+			// server.setSoTimeout(1000);
+
+			while (!Thread.currentThread().isInterrupted())
 			{
-					client = server.accept();
-					Proxy p = new Proxy(client, nachrichten);
-					p.start();
-					proxylist.add(p);
-					//p.sendClient();
+				client = server.accept();
+				Proxy p = new Proxy(client, messages);
+				p.start();
+				proxylist.add(p);
 			}
-		}
-		catch(IOException ioe)
+		} 
+		catch (IOException ioe)
 		{
-			JOptionPane.showMessageDialog(null,ioe.getMessage(),"IOExceptionS", JOptionPane.INFORMATION_MESSAGE);
-		}
-		catch(Exception e)
+			JOptionPane.showMessageDialog(null, ioe.getMessage(), "IOExceptionS", JOptionPane.INFORMATION_MESSAGE);
+		} 
+		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(null,e.getMessage(),"Exception", JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
-	
-	public void setUpStream() {
-		
-	}
-	public void broadcast(String message)
-	{
-		for(Proxy p : proxylist)
-		{
-			p.writeMessage(message);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Exception", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

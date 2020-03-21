@@ -1,8 +1,5 @@
 package de.pandastudios.chatengine.graphics;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,95 +16,135 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
 
-public class ClientView extends JFrame {
-	
-	private JPanel contentPane;
-	private JLabel lblServer;
-	private JLabel lblTextEingeben;
-	private JButton btnStart;
-	private JButton btnSenden;
-	private JComboBox comboBoxServer;
-	private JTextField textFieldEingabe;
-	private JLabel labelMessage;
-	private JList listMessages;
-	private DefaultListModel messageListe = new DefaultListModel();
-	private DefaultComboBoxModel idmodel = new DefaultComboBoxModel();
+public class ClientView extends JFrame
+{
 
-	public ClientView() {
+	private JPanel					contentPane;
+	private JLabel					lblServer;
+	private JLabel					lblInputText;
+	private JButton					btnStart;
+	private JButton					btnSend;
+	private JComboBox				comboBoxServer;
+	private JTextField				textFieldInput;
+	private JLabel					labelMessage;
+	private JList					listMessages;
+	private DefaultListModel		messageList		= new DefaultListModel();
+	private DefaultComboBoxModel	idmodel			= new DefaultComboBoxModel();
+
+	public ClientView()
+	{
 		initialize();
 	}
 
-	public JButton getBtnSenden() {
-		if (btnSenden == null) {
-			btnSenden = new JButton("senden");
+	public void btnSendAddActionListener(ActionListener listener)
+	{
+		getBtnSend().addActionListener(listener);
+	}
+
+	public void btnStartAddActionListener(ActionListener listener)
+	{
+		getBtnStart().addActionListener(listener);
+	}
+
+	public JButton getBtnSend()
+	{
+		if (btnSend == null)
+		{
+			btnSend = new JButton("Send");
 		}
-		return btnSenden;
+		return btnSend;
 	}
 
-	public void btnSendenAddActionListener(ActionListener listener) {
-		getBtnSenden().addActionListener(listener);
-	}
-
-	public JButton getBtnStart() {
-		if (btnStart == null) {
+	public JButton getBtnStart()
+	{
+		if (btnStart == null)
+		{
 			btnStart = new JButton("Start");
 		}
 		return btnStart;
 	}
 
-	public void btnStartAddActionListener(ActionListener listener) {
-		getBtnStart().addActionListener(listener);
-	}
-
-	public JComboBox getComboBoxServer() {
-		if (comboBoxServer == null) {
+	public JComboBox getComboBoxServer()
+	{
+		if (comboBoxServer == null)
+		{
 			comboBoxServer = new JComboBox();
 		}
 		return comboBoxServer;
 	}
 
-	private JLabel getLabelMessage() {
-		if (labelMessage == null) {
+	private JLabel getLabelMessage()
+	{
+		if (labelMessage == null)
+		{
 			labelMessage = new JLabel("");
 		}
 		return labelMessage;
 	}
 
-	private JLabel getLblServer() {
-		if (lblServer == null) {
+	private JLabel getLblServer()
+	{
+		if (lblServer == null)
+		{
 			lblServer = new JLabel("Server");
 		}
 		return lblServer;
 	}
 
-	private JLabel getLblTextEingeben() {
-		if (lblTextEingeben == null) {
-			lblTextEingeben = new JLabel("Text eingeben");
+	private JLabel getLblInputText()
+	{
+		if (lblInputText == null)
+		{
+			lblInputText = new JLabel("Text eingeben");
 		}
-		return lblTextEingeben;
+		return lblInputText;
 	}
 
-	public JTextField getTextFieldEingabe() {
-		if (textFieldEingabe == null) {
-			textFieldEingabe = new JTextField();
-			textFieldEingabe.setColumns(10);
+	public JList getListMessages()
+	{
+		if (listMessages == null)
+		{
+			listMessages = new JList();
 		}
-		return textFieldEingabe;
+		return listMessages;
 	}
 
-	private void initialize() {
+	public DefaultListModel getModel()
+	{
+		return messageList;
+	}
+
+	public DefaultComboBoxModel getModelId()
+	{
+		return idmodel;
+	}
+
+	public JTextField getTextFieldInput()
+	{
+		if (textFieldInput == null)
+		{
+			textFieldInput = new JTextField();
+			textFieldInput.setColumns(10);
+		}
+		return textFieldInput;
+	}
+
+	private void initialize()
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 417);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-				Double.MIN_VALUE };
+		gbl_contentPane.columnWidths = new int[]
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[]
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWeights = new double[]
+		{ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[]
+		{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 		GridBagConstraints gbc_lblServer = new GridBagConstraints();
 		gbc_lblServer.anchor = GridBagConstraints.WEST;
@@ -128,25 +165,25 @@ public class ClientView extends JFrame {
 		gbc_btnStart.gridx = 9;
 		gbc_btnStart.gridy = 2;
 		contentPane.add(getBtnStart(), gbc_btnStart);
-		GridBagConstraints gbc_lblTextEingeben = new GridBagConstraints();
-		gbc_lblTextEingeben.anchor = GridBagConstraints.WEST;
-		gbc_lblTextEingeben.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTextEingeben.gridx = 1;
-		gbc_lblTextEingeben.gridy = 4;
-		contentPane.add(getLblTextEingeben(), gbc_lblTextEingeben);
-		GridBagConstraints gbc_textFieldEingabe = new GridBagConstraints();
-		gbc_textFieldEingabe.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldEingabe.gridwidth = 9;
-		gbc_textFieldEingabe.insets = new Insets(0, 0, 5, 5);
-		gbc_textFieldEingabe.gridx = 1;
-		gbc_textFieldEingabe.gridy = 5;
-		contentPane.add(getTextFieldEingabe(), gbc_textFieldEingabe);
-		GridBagConstraints gbc_btnSenden = new GridBagConstraints();
-		gbc_btnSenden.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnSenden.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSenden.gridx = 9;
-		gbc_btnSenden.gridy = 6;
-		contentPane.add(getBtnSenden(), gbc_btnSenden);
+		GridBagConstraints gbc_lblInputText = new GridBagConstraints();
+		gbc_lblInputText.anchor = GridBagConstraints.WEST;
+		gbc_lblInputText.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInputText.gridx = 1;
+		gbc_lblInputText.gridy = 4;
+		contentPane.add(getLblInputText(), gbc_lblInputText);
+		GridBagConstraints gbc_textFieldInput = new GridBagConstraints();
+		gbc_textFieldInput.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldInput.gridwidth = 9;
+		gbc_textFieldInput.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldInput.gridx = 1;
+		gbc_textFieldInput.gridy = 5;
+		contentPane.add(getTextFieldInput(), gbc_textFieldInput);
+		GridBagConstraints gbc_btnSend = new GridBagConstraints();
+		gbc_btnSend.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnSend.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSend.gridx = 9;
+		gbc_btnSend.gridy = 6;
+		contentPane.add(getBtnSend(), gbc_btnSend);
 		GridBagConstraints gbc_labelMessage = new GridBagConstraints();
 		gbc_labelMessage.insets = new Insets(0, 0, 5, 5);
 		gbc_labelMessage.gridx = 1;
@@ -160,20 +197,4 @@ public class ClientView extends JFrame {
 		gbc_listMessages.gridy = 9;
 		contentPane.add(getListMessages(), gbc_listMessages);
 	}
-
-	public JList getListMessages() {
-		if (listMessages == null) {
-			listMessages = new JList();
-		}
-		return listMessages;
-	}
-
-	public DefaultListModel getModel() {
-		return messageListe;
-	}
-
-	public DefaultComboBoxModel getModelId() {
-		return idmodel;
-	}
 }
-
