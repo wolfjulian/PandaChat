@@ -3,6 +3,8 @@ package de.pandastudios.main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JList;
+
 import de.pandastudios.chatengine.controller.Server;
 import de.pandastudios.chatengine.graphics.ServerView;
 
@@ -20,6 +22,10 @@ public class ServerMain
 	private void setView()
 	{
 		view = new ServerView();
+		view.getList().setSize(309, 157);
+		view.getScrollPane().setSize(309, 157);
+		view.getScrollPane().setLocation(10, 38);
+		view.getList().setLocation(10, 38);
 		view.setVisible(true);
 
 		BtnStartActionListener btnStart = new BtnStartActionListener();
@@ -55,8 +61,26 @@ public class ServerMain
 					server.startServer(Integer.parseInt(view.getTextFieldPort().getText()), view.getNachrichten());
 				}
 			}).start();
-			view.getScrollPane().add(view.getList());
+			// TESTZWECKE
+//			new Thread(new Runnable(){
+//			@Override
+//			public void run(){
+//				while(true) {
+//					try
+//					{
+//						Thread.currentThread().sleep(0);
+//					} catch (InterruptedException e)
+//					{
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					new ClientMain();
+//				}
+//				}}).start();
 			view.getList().setModel(view.getNachrichten());
+			view.getScrollPane().setViewportView(view.getList());
+			view.getList().setLayoutOrientation(JList.VERTICAL);
+			
 		}
 	}
 
@@ -72,8 +96,5 @@ public class ServerMain
 	public static void main(String[] args)
 	{
 		new ServerMain();
-		new ClientMain();
-		new ClientMain();
-		new ClientMain();
 	}
 }
