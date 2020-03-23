@@ -8,6 +8,16 @@ import de.pandastudios.main.ServerMain;
 
 public class Attack
 {
+	public Attack() {
+		executor.execute(new Runnable() {
+			@Override
+			public void run()
+			{
+				// TODO Auto-generated method stub
+				createClients();
+			}
+		});
+	}
 	private static final int MYTHREADS = 2;
 	static ExecutorService executor = Executors.newFixedThreadPool(MYTHREADS);
 	
@@ -19,18 +29,6 @@ public class Attack
 			}	
 	}
 
-	
-	public static void main(String[] args)
-	{
-		executor.execute(new Runnable() {
-			@Override
-			public void run()
-			{
-				// TODO Auto-generated method stub
-				createClients();
-			}
-		});
-	}
 	
 }
 

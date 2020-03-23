@@ -7,6 +7,7 @@ import javax.swing.JList;
 
 import de.pandastudios.chatengine.controller.Server;
 import de.pandastudios.chatengine.graphics.ServerView;
+import de.pandastudios.chatengine.security.Attack;
 
 public class ServerMain
 {
@@ -61,6 +62,18 @@ public class ServerMain
 					server.startServer(Integer.parseInt(view.getTextFieldPort().getText()), view.getNachrichten());
 				}
 			}).start();
+			
+			new Thread(new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					while(true) {
+						new Attack();
+					}
+				}
+			}).start();
+			
 			// TESTZWECKE
 //			new Thread(new Runnable(){
 //			@Override
