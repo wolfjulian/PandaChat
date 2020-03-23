@@ -15,7 +15,6 @@ public class ClientMain
 	{
 		client = new Client();
 		setView();
-		client.connect();
 	}
 	
 	private void setView()
@@ -37,7 +36,7 @@ public class ClientMain
 			// TODO Auto-generated method stub
 			if (!client.connected())
 			{
-				//client.connect();
+				client.connect();
 				view.getListMessages().setModel(view.getModel());
 				view.getComboBoxServer().setModel(view.getModelId());
 				new Thread(new Runnable()

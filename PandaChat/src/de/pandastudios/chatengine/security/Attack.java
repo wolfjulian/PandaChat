@@ -18,7 +18,7 @@ public class Attack
 			}
 		});
 	}
-	private static final int MYTHREADS = 2;
+	private static final int MYTHREADS = 8;
 	static ExecutorService executor = Executors.newFixedThreadPool(MYTHREADS);
 	
 	public static void createClients()

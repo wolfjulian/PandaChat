@@ -25,11 +25,11 @@ public class Client
 		try
 		{
 			client = new Socket("localhost", 8008);
-			//JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
 
 			started = true;
 			stream.setUpStream(client);
-			attack();
+
 		} catch (UnknownHostException uhe)
 		{
 			System.out.println(uhe.getMessage());
@@ -91,26 +91,5 @@ public class Client
 			System.out.println("Error write Message!");
 		}
 	}
-
-	// NUR FÜR TESTZWECKE
-	public void attack() {
-
-		new Thread(new Runnable(){
-			@Override
-			public void run(){
-				while(true) {
-					try
-					{
-						Thread.currentThread().sleep(500);
-					} catch (InterruptedException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					writeMessage("DDOS \n");
-				}
-				}}).start();
-	}
-
 
 }
