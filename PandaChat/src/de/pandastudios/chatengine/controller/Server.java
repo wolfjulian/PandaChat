@@ -1,4 +1,4 @@
-package de.pandastudios.chatengine.engine;
+package de.pandastudios.chatengine.controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+
+import de.pandastudios.chatengine.config.Config;
 
 public class Server
 {
@@ -38,6 +40,7 @@ public class Server
 			{
 				client = server.accept();
 				Proxy p = new Proxy(client, messages);
+				Config.getpArray().add(client.getPort());
 				p.start();
 				proxylist.add(p);
 			}

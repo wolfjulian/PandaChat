@@ -1,4 +1,4 @@
-package de.pandastudios.secureengine.graphics;
+package de.pandastudios.chatengine.graphics;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class PandaTPSView extends JFrame {
+public class TPSView extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblName;
@@ -28,26 +28,7 @@ public class PandaTPSView extends JFrame {
 	private JLabel lblPortScanner;
 	private JButton btnPortScannerScan;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PandaTPSView frame = new PandaTPSView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public PandaTPSView() {
+	public TPSView() {
 		initialize();
 	}
 	private void initialize() {

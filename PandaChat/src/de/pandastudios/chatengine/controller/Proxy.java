@@ -1,4 +1,4 @@
-package de.pandastudios.chatengine.engine;
+package de.pandastudios.chatengine.controller;
 
 import java.io.IOException;
 import java.net.Socket;

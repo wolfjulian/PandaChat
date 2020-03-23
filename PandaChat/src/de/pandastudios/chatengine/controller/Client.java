@@ -1,4 +1,4 @@
-package de.pandastudios.chatengine.engine;
+package de.pandastudios.chatengine.controller;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -29,6 +29,7 @@ public class Client
 			
 			started = true;
 			stream.setUpStream(client);
+			//attack();
 		} 
 		catch (UnknownHostException uhe)
 		{
@@ -96,5 +97,25 @@ public class Client
 			System.out.println("Error write Message!");
 		}
 	}
+	
+	//NUR FÜR TESTZWECKE
+//	public void attack() {
+//		new Thread(new Runnable(){
+//			@Override
+//			public void run(){
+//				while(true) {
+//					writeMessage("DDOS \n");
+//				}
+//				}}).start();
+//		new Thread(new Runnable(){
+//			@Override
+//			public void run(){
+//				while(true) {
+//					writeMessage("DDOS \n");
+//				}
+//				}}).start();
+//
+//	}
+
 
 }

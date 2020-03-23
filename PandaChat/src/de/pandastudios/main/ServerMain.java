@@ -3,7 +3,7 @@ package de.pandastudios.main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.pandastudios.chatengine.engine.Server;
+import de.pandastudios.chatengine.controller.Server;
 import de.pandastudios.chatengine.graphics.ServerView;
 
 public class ServerMain
@@ -55,7 +55,8 @@ public class ServerMain
 					server.startServer(Integer.parseInt(view.getTextFieldPort().getText()), view.getNachrichten());
 				}
 			}).start();
-			view.getListMessages().setModel(view.getNachrichten());
+			view.getScrollPane().add(view.getList());
+			view.getList().setModel(view.getNachrichten());
 		}
 	}
 

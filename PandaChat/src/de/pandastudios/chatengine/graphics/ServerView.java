@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 
 public class ServerView extends JFrame
 {
@@ -20,9 +21,11 @@ public class ServerView extends JFrame
 	private JButton						btnStart;
 	private JTextField					textFieldPort;
 	private JTextField					textFieldBroadcast;
-	private JList						listMessages;
 	private DefaultListModel<String>	nachrichten	= new DefaultListModel<String>();
 	private JButton						btnSend;
+	private JScrollPane sPMessage;
+	private JList list;
+	private JScrollPane scrollPane;
 
 	public ServerView()
 	{
@@ -80,16 +83,6 @@ public class ServerView extends JFrame
 		return lblPortnr;
 	}
 
-	public JList getListMessages()
-	{
-		if (listMessages == null)
-		{
-			listMessages = new JList();
-			listMessages.setBounds(10, 36, 325, 159);
-		}
-		return listMessages;
-	}
-
 	public DefaultListModel<String> getNachrichten()
 	{
 		return nachrichten;
@@ -131,12 +124,27 @@ public class ServerView extends JFrame
 		contentPane.add(getBtnStart());
 		contentPane.add(getTextFieldPort());
 		contentPane.add(getTextFieldBroadcast());
-		contentPane.add(getListMessages());
 		contentPane.add(getBtnSend());
+		contentPane.add(getList());
+		contentPane.add(getScrollPane());
 	}
 
 	public void txtPortAddActionListener(ActionListener listener)
 	{
 		getTextFieldPort().addActionListener(listener);
+	}
+	public JList getList() {
+		if (list == null) {
+			list = new JList();
+			list.setBounds(20, 36, 308, 157);
+		}
+		return list;
+	}
+	public JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setBounds(20, 36, 308, 157);
+		}
+		return scrollPane;
 	}
 }

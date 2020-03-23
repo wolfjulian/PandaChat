@@ -3,7 +3,7 @@ package de.pandastudios.main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.pandastudios.chatengine.engine.Client;
+import de.pandastudios.chatengine.controller.Client;
 import de.pandastudios.chatengine.graphics.ClientView;
 
 public class ClientMain
