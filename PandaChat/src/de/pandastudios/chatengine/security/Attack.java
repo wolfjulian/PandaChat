@@ -1,36 +1,36 @@
 package de.pandastudios.chatengine.security;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import de.pandastudios.main.ClientMain;
 import de.pandastudios.main.ServerMain;
 
 public class Attack
 {
-	public Attack()
-	{
-		
-	}
+	private static final int MYTHREADS = 2;
+	static ExecutorService executor = Executors.newFixedThreadPool(MYTHREADS);
 	
 	public static void createClients()
 	{
-		new Thread(new Runnable(){
-		@Override
-		public void run(){
-			while(true) {
-				try
-				{
-					Thread.currentThread().sleep(0);
-				} catch (InterruptedException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				new ClientMain();
-			}
-			}}).start();
+			while(!Thread.currentThread().isInterrupted()) 
+			{
+				new ClientMain().getClient().writeMessage("DDOS");
+			}	
 	}
+
 	
 	public static void main(String[] args)
 	{
-		createClients();
+		executor.execute(new Runnable() {
+			@Override
+			public void run()
+			{
+				// TODO Auto-generated method stub
+				createClients();
+			}
+		});
 	}
+	
 }
+

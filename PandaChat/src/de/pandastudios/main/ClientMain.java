@@ -53,6 +53,11 @@ public class ClientMain
 			
 		}
 	}
+	
+	public Client getClient()
+	{
+		return client;
+	}
 
 	public class BtnSendActionListener implements ActionListener
 	{
