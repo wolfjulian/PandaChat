@@ -45,6 +45,7 @@ public class Server
 			{
 				client = server.accept();
 				Proxy p = new Proxy(client, messages);
+
 				Thread t1 = new Thread(p);
 				t1.start();
 				Config.getpArray().add(p);

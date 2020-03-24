@@ -13,7 +13,7 @@ public class ClientMain
 	ClientView view;
 	Client client;
 	
-	public ClientMain() throws UnknownHostException, SocketException
+	public ClientMain()
 	{
 		client = new Client();
 		setView();
@@ -38,18 +38,24 @@ public class ClientMain
 			// TODO Auto-generated method stub
 			if (!client.connected())
 			{
-				client.connect();
-				view.getListMessages().setModel(view.getModel());
-				view.getComboBoxServer().setModel(view.getModelId());
-				new Thread(new Runnable()
+				if(!client.connect())
 				{
-					@Override
-					public void run()
+					view.dispose();
+				}
+				else
+				{
+					view.getListMessages().setModel(view.getModel());
+					view.getComboBoxServer().setModel(view.getModelId());
+					new Thread(new Runnable()
 					{
-						// TODO Auto-generated method stub
-						client.getMessage(view.getModel());
-					}
-				}).start();
+						@Override
+						public void run()
+						{
+							// TODO Auto-generated method stub
+							client.getMessage(view.getModel());
+						}
+					}).start();
+				}
 			}
 			
 		}
@@ -71,8 +77,8 @@ public class ClientMain
 		}
 	}
 
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//		new ClientMain();
-//	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ClientMain();
+	}
 }

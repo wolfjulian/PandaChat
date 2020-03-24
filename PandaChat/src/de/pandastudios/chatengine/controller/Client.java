@@ -1,62 +1,63 @@
 package de.pandastudios.chatengine.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.Socket;
-import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.Enumeration;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
+import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.io.Stream;
 import de.pandastudios.chatengine.security.MacChecker;
 
-public class Client 
+public class Client
 {
-	Socket	client;
-	Socket clientUser;
-	boolean	started	= false;
-	Stream	stream	= new Stream();
-	MacChecker mac = new MacChecker();
+	Socket		client;
+	Socket		clientUser;
+	boolean		started	= false;
+	Stream		stream	= new Stream();
+	MacChecker	mac		= new MacChecker();
 
-	public Client() throws UnknownHostException, SocketException
+	public Client()
 	{
-		
+
 	}
 
-	public void connect()
+	public boolean connect()
 	{
 		try
 		{
 			
-			client = new Socket("localhost", 8008);
-			JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
-			started = true;
 			mac.getMacAddress();
-			if(!mac.getIsRunning()) {
+			if (Config.getIsRunning())
+			{
+				client = new Socket("localhost", 8008);
+				JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
+				started = true;
 				stream.setUpStream(client);
-			} else {
-				client.close(); 
+				
+				return true;
+			} 
+			else
+			{
 				System.out.println("Nix geht");
+				
+				return false;
 			}
 		} catch (UnknownHostException uhe)
 		{
 			System.out.println(uhe.getMessage());
+			return false;
 		} catch (IOException ioe)
 		{
 			System.out.println(ioe.getMessage());
+			return false;
 		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
+			return false;
 		}
+		
 	}
 
 	public boolean connected()
@@ -108,7 +109,4 @@ public class Client
 			System.out.println("Error write Message!");
 		}
 	}
-	
-	
-
 }
