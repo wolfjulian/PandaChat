@@ -29,7 +29,7 @@ public class Client
 		{
 			
 			mac.getMacAddress();
-			if (Config.getIsRunning())
+			if (!Config.getIsRunning())
 			{
 				client = new Socket("localhost", 8008);
 				JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
