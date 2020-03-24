@@ -1,14 +1,17 @@
 package de.pandastudios.chatengine.controller;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import javax.swing.DefaultListModel;
 
 import de.pandastudios.chatengine.io.Stream;
 
-public class Proxy extends Thread
-{
+public class Proxy implements Runnable {
 	Socket	client;
 	DefaultListModel messages;
 	Stream	stream	= new Stream();
@@ -67,4 +70,5 @@ public class Proxy extends Thread
 			System.out.println("Error write Message!");
 		}
 	}
+	
 }

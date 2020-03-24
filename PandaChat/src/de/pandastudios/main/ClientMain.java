@@ -2,6 +2,8 @@ package de.pandastudios.main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import de.pandastudios.chatengine.controller.Client;
 import de.pandastudios.chatengine.graphics.ClientView;
@@ -11,7 +13,7 @@ public class ClientMain
 	ClientView view;
 	Client client;
 	
-	public ClientMain()
+	public ClientMain() throws UnknownHostException, SocketException
 	{
 		client = new Client();
 		setView();

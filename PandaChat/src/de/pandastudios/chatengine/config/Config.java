@@ -2,12 +2,20 @@ package de.pandastudios.chatengine.config;
 
 import java.util.ArrayList;
 
-public class Config {
-	static ArrayList<Integer> pArray = new ArrayList<Integer>();
+import de.pandastudios.chatengine.controller.Proxy;
 
-	public static ArrayList<Integer> getpArray() {
+public class Config {
+	static ArrayList<String> macArray = new ArrayList<String>();
+	static ArrayList<Proxy> pArray = new ArrayList<Proxy>();
+
+	public static ArrayList<Proxy> getpArray() {
 		return pArray;
+	}
+
+	public static ArrayList<String> getMacArray() {
+		return macArray;
 	} 
+	
 	
 	
 }

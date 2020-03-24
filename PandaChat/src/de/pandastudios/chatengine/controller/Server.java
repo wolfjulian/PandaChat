@@ -1,20 +1,25 @@
 package de.pandastudios.chatengine.controller;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import de.pandastudios.chatengine.config.Config;
+import de.pandastudios.chatengine.security.MacChecker;
 
 public class Server
 {
 	ServerSocket server;
 	Socket client;
-	ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
+
 
 	public Server()
 	{
@@ -22,7 +27,7 @@ public class Server
 
 	public void broadcast(String message)
 	{
-		for (Proxy p : proxylist)
+		for (Proxy p : Config.getpArray())
 		{
 			p.writeMessage(message);
 		}
@@ -40,9 +45,9 @@ public class Server
 			{
 				client = server.accept();
 				Proxy p = new Proxy(client, messages);
-				Config.getpArray().add(client.getPort());
-				p.start();
-				proxylist.add(p);
+				Thread t1 = new Thread(p);
+				t1.start();
+				Config.getpArray().add(p);
 			}
 		} 
 		catch (IOException ioe)
@@ -54,4 +59,5 @@ public class Server
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Exception", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+	
 }

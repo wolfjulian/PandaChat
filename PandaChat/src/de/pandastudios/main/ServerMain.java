@@ -2,6 +2,8 @@ package de.pandastudios.main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import javax.swing.JList;
 
@@ -79,7 +81,7 @@ public class ServerMain
 		}
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws UnknownHostException, SocketException
 	{
 		new ServerMain();
 		new ClientMain();
