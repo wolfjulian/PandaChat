@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.io.Stream;
-import de.pandastudios.chatengine.security.MacChecker;
+import de.pandastudios.chatengine.security.IPChecker;
 
 public class Client
 {
@@ -16,48 +16,19 @@ public class Client
 	Socket		clientUser;
 	boolean		started	= false;
 	Stream		stream	= new Stream();
-	MacChecker	mac		= new MacChecker();
+	IPChecker	mac		= new IPChecker();
 
 	public Client()
 	{
 
 	}
 
-	public boolean connect()
+	public void connect() throws Exception
 	{
-		try
-		{
-			
-			mac.getMacAddress();
-			if (!Config.getIsRunning())
-			{
-				client = new Socket("localhost", 8008);
-				JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
-				started = true;
-				stream.setUpStream(client);
-				
-				return true;
-			} 
-			else
-			{
-				System.out.println("Nix geht");
-				
-				return false;
-			}
-		} catch (UnknownHostException uhe)
-		{
-			System.out.println(uhe.getMessage());
-			return false;
-		} catch (IOException ioe)
-		{
-			System.out.println(ioe.getMessage());
-			return false;
-		} catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-			return false;
-		}
-		
+		client = new Socket("localhost", 8008);
+		JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
+		started = true;
+		stream.setUpStream(client);
 	}
 
 	public boolean connected()

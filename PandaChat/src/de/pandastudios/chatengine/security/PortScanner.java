@@ -6,7 +6,7 @@ import java.net.SocketAddress;
 
 import de.pandastudios.chatengine.config.*;
 
-public class Port implements Runnable{
+public class PortScanner implements Runnable{
 	
 	private int pStart;
 	private int pEnd;

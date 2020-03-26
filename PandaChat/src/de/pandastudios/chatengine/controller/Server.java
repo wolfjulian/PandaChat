@@ -13,7 +13,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import de.pandastudios.chatengine.config.Config;
-import de.pandastudios.chatengine.security.MacChecker;
+import de.pandastudios.chatengine.security.IPChecker;
 
 public class Server
 {
@@ -45,7 +45,7 @@ public class Server
 			{
 				client = server.accept();
 				Proxy p = new Proxy(client, messages);
-
+				new IPChecker().getIPAdress(client);
 				Thread t1 = new Thread(p);
 				t1.start();
 				Config.getpArray().add(p);

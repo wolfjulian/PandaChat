@@ -38,28 +38,27 @@ public class ClientMain
 			// TODO Auto-generated method stub
 			if (!client.connected())
 			{
-				if(!client.connect())
-				{
-					view.dispose();
+				try {
+					client.connect();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				else
+				view.getListMessages().setModel(view.getModel());
+				view.getComboBoxServer().setModel(view.getModelId());
+				new Thread(new Runnable()
 				{
-					view.getListMessages().setModel(view.getModel());
-					view.getComboBoxServer().setModel(view.getModelId());
-					new Thread(new Runnable()
+					@Override
+					public void run()
 					{
-						@Override
-						public void run()
-						{
-							// TODO Auto-generated method stub
-							client.getMessage(view.getModel());
-						}
-					}).start();
-				}
+						// TODO Auto-generated method stub
+						client.getMessage(view.getModel());
+					}
+				}).start();
 			}
-			
 		}
-	}
+	}		
+	
 	
 	public Client getClient()
 	{

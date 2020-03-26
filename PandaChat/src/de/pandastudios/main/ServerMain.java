@@ -56,6 +56,7 @@ public class ServerMain
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
+			
 			new Thread(new Runnable()
 			{
 				@Override
@@ -84,6 +85,5 @@ public class ServerMain
 	public static void main(String[] args)
 	{
 		new ServerMain();
-
 	}
 }
