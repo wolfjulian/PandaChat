@@ -10,10 +10,29 @@ import java.util.List;
 import de.pandastudios.chatengine.controller.Proxy;
 
 public class Config {
-	static ArrayList<String> macArray = new ArrayList<String>();
-	static ArrayList<Proxy> pArray = new ArrayList<Proxy>();
-	static HashMap<InetAddress, Timestamp> map = new HashMap<InetAddress, Timestamp>();
+	private static ArrayList<String> macArray = new ArrayList<String>();
+	private static ArrayList<Proxy> pArray = new ArrayList<Proxy>();
+	private static HashMap<InetAddress, Timestamp> map = new HashMap<InetAddress, Timestamp>();
 	private static Boolean	isRunning	= false;
+	private static int countClients;
+	private static int maxClients = 2;
+	private static String path = "C:\\Users\\lbehr\\git\\PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
+	
+
+	public static int getMaxClients()
+	{
+		return maxClients;
+	}
+
+	public static void setCountClients(int countClients)
+	{
+		Config.countClients = countClients;
+	}
+
+	public static int getCountClients()
+	{
+		return countClients;
+	}
 
 	public static void setIsRunning(Boolean isRunning)
 	{
@@ -35,6 +54,11 @@ public class Config {
 
 	public static HashMap<InetAddress, Timestamp> getMap() {
 		return map;
+	}
+
+	public static String getPath()
+	{
+		return path;
 	} 
 	
 
