@@ -46,6 +46,7 @@ public class ClientMain
 				}
 				view.getListMessages().setModel(view.getModel());
 				view.getComboBoxServer().setModel(view.getModelId());
+				
 				new Thread(new Runnable()
 				{
 					@Override

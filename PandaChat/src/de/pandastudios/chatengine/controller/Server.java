@@ -43,12 +43,17 @@ public class Server
 
 			while (!Thread.currentThread().isInterrupted())
 			{
-				client = server.accept();
-				Proxy p = new Proxy(client, messages);
-				new IPChecker().getIPAdress(client);
-				Thread t1 = new Thread(p);
-				t1.start();
-				Config.getpArray().add(p);
+				if(Config.getCountClients() <= Config.getMaxClients())
+				{
+					client = server.accept();
+					Proxy p = new Proxy(client, messages);
+					new IPChecker().getIPAdress(client);
+					Thread t1 = new Thread(p);
+					t1.start();
+					Config.getpArray().add(p);
+					Config.setCountClients(Config.getCountClients()+1);
+				}
+				
 			}
 		} 
 		catch (IOException ioe)
