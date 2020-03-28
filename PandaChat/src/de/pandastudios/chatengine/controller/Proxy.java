@@ -40,6 +40,14 @@ public class Proxy implements Runnable {
 			e.printStackTrace();
 		}
 		timeStamp = Config.getTimeStamp();
+		new Thread(new Runnable() 
+		{
+			@Override
+			public void run()
+			{
+				compareTimeStamps();
+			}
+		}).start();
 	}
 
 	public Socket getClient()
@@ -51,7 +59,7 @@ public class Proxy implements Runnable {
 	{
 		while(!Thread.currentThread().isInterrupted())
 		{
-			if(Config.getTimeStamp().getTime() - timeStamp.getTime() > 9000)
+			if(Config.getTimeStamp().getTime() - timeStamp.getTime() > 900000)
 			{	
 				System.out.println("Client Timeout");
 				try
@@ -74,23 +82,12 @@ public class Proxy implements Runnable {
 	{
 		try
 		{
-			new Thread(new Runnable() 
-			{
-				@Override
-				public void run()
-				{
-					compareTimeStamps();
-				}
-			}).start();;
 			while (!Thread.currentThread().isInterrupted())
 			{
-				if(stream.getInput().readObject() != null)
-				{
 					String message = (String) stream.getInput().readObject();
 					message = message + "\n";
 					messages.addElement(message);
 					timeStamp = Config.getTimeStamp();
-				}
 			}
 		} 
 		catch (IOException ioe)
