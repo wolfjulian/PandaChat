@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.utils.fileUtils;
-import sun.management.FileSystem;
+
 
 public class IPChecker
 {
@@ -68,37 +68,14 @@ public class IPChecker
 		Timestamp ts = new Timestamp(time);
 		return ts;
 	}
-<<<<<<< HEAD
-	
-	public void getHashMap(Socket socket) {
-		Config.getMap().put(transformAddress(socket).getAddress(), getTimeStamp());
-		System.out.println(Config.getMap().get(transformAddress(socket).getAddress()));
-		System.out.println(transformAddress(socket).getAddress());
-	}
-	
-	public void compairPastTime(Socket socket) {
-		if(Config.getMap().get(transformAddress(socket).getAddress()) != null) {
-			if((getTimeStamp().getTime() - Config.getMap().get(transformAddress(socket).getAddress()).getTime()) > delay){
-				System.out.println("DDOS");
-			}
-		} else {
-			getHashMap(socket); 
-		}
-	}
-	
-	public InetSocketAddress transformAddress(Socket socket) {
-=======
+
+
 
 	public InetSocketAddress transformAddress(Socket socket)
 	{
->>>>>>> branch 'master' of https://github.com/Panda157/PandaChat.git
 		SocketAddress sockAddr = socket.getRemoteSocketAddress();
-<<<<<<< HEAD
 		InetSocketAddress inetAddr = (InetSocketAddress)sockAddr;
-=======
-		InetSocketAddress inetAddr = (InetSocketAddress) sockAddr;
-
->>>>>>> branch 'master' of https://github.com/Panda157/PandaChat.git
+		
 		return inetAddr;
 	}
 
