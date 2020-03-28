@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
 
 import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.security.IPChecker;
+import de.pandastudios.chatengine.security.ShareTraffic;
+import de.pandastudios.chatengine.utils.fileUtils;
 
 public class Server
 {
 	ServerSocket server;
 	Socket client;
-
+	IPChecker ipCh = new IPChecker();
 
 	public Server()
 	{
@@ -39,21 +41,29 @@ public class Server
 		{
 			server = new ServerSocket(port);
 			JOptionPane.showMessageDialog(null, "Server Up", "", JOptionPane.INFORMATION_MESSAGE);
-			// server.setSoTimeout(1000);
-
+			Thread tShare = new Thread(new ShareTraffic());
+			tShare.start();
+			
 			while (!Thread.currentThread().isInterrupted())
 			{
 				if(Config.getCountClients() <= Config.getMaxClients())
 				{
 					client = server.accept();
+					Config.setActualClient(ipCh.transformAddress(client));
+					Config.setInput(fileUtils.loadAsString(Config.getPath()).split("\n"));
+					for(int i = 0; i < Config.getInput().length; i++) {
+						if(Config.getActualClient().getAddress().toString().equals(Config.getInput()[i])) {
+							System.out.println("BANNED");
+							client.close();
+						}
+					}
 					Proxy p = new Proxy(client, messages);
-					new IPChecker().getIPAdress(client);
+					ipCh.getIPAdress(client);
 					Thread t1 = new Thread(p);
 					t1.start();
 					Config.getpArray().add(p);
 					Config.setCountClients(Config.getCountClients()+1);
-				}
-				
+				}	
 			}
 		} 
 		catch (IOException ioe)

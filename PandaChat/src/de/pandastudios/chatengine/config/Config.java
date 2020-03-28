@@ -1,6 +1,9 @@
 package de.pandastudios.chatengine.config;
 
+import java.io.BufferedReader;
+import java.io.StringReader;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -16,8 +19,32 @@ public class Config {
 	private static Boolean	isRunning	= false;
 	private static int countClients;
 	private static int maxClients = 2;
-	private static String path = "C:\\Users\\lbehr\\git\\PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
+	private static String path = "C:\\Users\\Admin\\git\\PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
+	private static String nioPath = "/PandaChat/src/de/pandastudios/chatengine/config/banlist";
+	private static InetSocketAddress actualClient;
+	private static String[] input;
 	
+	public static String getNioPath() {
+		return nioPath;
+	}
+
+
+
+	public static String[] getInput() {
+		return input;
+	}
+
+	public static void setInput(String[] input) {
+		Config.input = input;
+	}
+
+	public static void setActualClient(InetSocketAddress actualClient) {
+		Config.actualClient = actualClient;
+	}
+
+	public static InetSocketAddress getActualClient() {
+		return actualClient;
+	}
 
 	public static int getMaxClients()
 	{

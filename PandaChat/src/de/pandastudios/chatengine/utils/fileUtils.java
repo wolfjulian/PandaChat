@@ -2,6 +2,7 @@ package de.pandastudios.chatengine.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +13,7 @@ public class fileUtils
 	{
 		StringBuilder result = new StringBuilder();
 
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(fileUtils.class.getResourceAsStream(path))))
+		try (BufferedReader reader = new BufferedReader(new FileReader(path)))
 		{
 			String line = "";
 			while ((line = reader.readLine()) != null)
