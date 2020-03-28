@@ -45,7 +45,7 @@ public class IPChecker
 	
 	public void compairPastTime(Socket socket) {
 		if(Config.getMap().get(transformAddress(socket).getAddress()) != null) {
-			if((getTimeStamp().getTime() - Config.getMap().get(transformAddress(socket).getAddress()).getTime()) > 3000){
+			if((getTimeStamp().getTime() - Config.getMap().get(transformAddress(socket).getAddress()).getTime()) > delay){
 				System.out.println("DDOS");
 			}
 		} else {
@@ -56,7 +56,6 @@ public class IPChecker
 	public InetSocketAddress transformAddress(Socket socket) {
 		SocketAddress sockAddr = socket.getRemoteSocketAddress();
 		InetSocketAddress inetAddr = (InetSocketAddress)sockAddr;
-		
 		return inetAddr;
 	}
 
