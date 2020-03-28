@@ -35,13 +35,12 @@ public class ClientMain
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			// TODO Auto-generated method stub
 			if (!client.connected())
 			{
 				try {
 					client.connect();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 				}
 				view.getListMessages().setModel(view.getModel());
@@ -52,7 +51,7 @@ public class ClientMain
 					@Override
 					public void run()
 					{
-						// TODO Auto-generated method stub
+
 						client.getMessage(view.getModel());
 					}
 				}).start();

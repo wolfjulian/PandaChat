@@ -1,14 +1,8 @@
 package de.pandastudios.chatengine.controller;
 
 import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -19,9 +13,9 @@ import de.pandastudios.chatengine.utils.fileUtils;
 
 public class Server
 {
-	ServerSocket server;
-	Socket client;
-	IPChecker ipCh = new IPChecker();
+	ServerSocket	server;
+	Socket			client;
+	IPChecker		ipCh	= new IPChecker();
 
 	public Server()
 	{
@@ -34,6 +28,8 @@ public class Server
 			p.writeMessage(message);
 		}
 	}
+	
+	
 
 	public void startServer(int port, DefaultListModel messages)
 	{
@@ -44,15 +40,18 @@ public class Server
 			Thread tShare = new Thread(new ShareTraffic());
 			tShare.start();
 			
+
 			while (!Thread.currentThread().isInterrupted())
 			{
-				if(Config.getCountClients() <= Config.getMaxClients())
+				if (Config.getCountClients() <= Config.getMaxClients())
 				{
 					client = server.accept();
 					Config.setActualClient(ipCh.transformAddress(client));
 					Config.setInput(fileUtils.loadAsString(Config.getPath()).split("\n"));
-					for(int i = 0; i < Config.getInput().length; i++) {
-						if(Config.getActualClient().getAddress().toString().equals(Config.getInput()[i])) {
+					for (int i = 0; i < Config.getInput().length; i++)
+					{
+						if (Config.getActualClient().getAddress().toString().equals(Config.getInput()[i]))
+						{
 							System.out.println("BANNED");
 							client.close();
 						}
@@ -62,18 +61,19 @@ public class Server
 					Thread t1 = new Thread(p);
 					t1.start();
 					Config.getpArray().add(p);
-					Config.setCountClients(Config.getCountClients()+1);
-				}	
+					Config.setCountClients(Config.getCountClients() + 1);
+					
+				}
 			}
-		} 
-		catch (IOException ioe)
+			
+			
+		} catch (IOException ioe)
 		{
 			JOptionPane.showMessageDialog(null, ioe.getMessage(), "IOExceptionS", JOptionPane.INFORMATION_MESSAGE);
-		} 
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Exception", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 }

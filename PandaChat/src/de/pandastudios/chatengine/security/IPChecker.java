@@ -25,7 +25,7 @@ public class IPChecker
 	{
 		if (Config.getMap().get(transformAddress(socket).getAddress()) != null)
 		{
-			if ((getTimeStamp().getTime()
+			if ((Config.getTimeStamp().getTime()
 					- Config.getMap().get(transformAddress(socket).getAddress()).getTime()) > 3000)
 			{
 				try
@@ -51,7 +51,7 @@ public class IPChecker
 
 	public void getHashMap(Socket socket)
 	{
-		Config.getMap().put(transformAddress(socket).getAddress(), getTimeStamp());
+		Config.getMap().put(transformAddress(socket).getAddress(), Config.getTimeStamp());
 		System.out.println(Config.getMap().get(transformAddress(socket).getAddress()));
 		System.out.println(transformAddress(socket).getAddress());
 	}
@@ -61,14 +61,7 @@ public class IPChecker
 		compairPastTime(socket);
 	}
 
-	public Timestamp getTimeStamp()
-	{
-		Date date = new Date();
-		long time = date.getTime();
-		Timestamp ts = new Timestamp(time);
-		return ts;
-	}
-
+	
 
 
 	public InetSocketAddress transformAddress(Socket socket)

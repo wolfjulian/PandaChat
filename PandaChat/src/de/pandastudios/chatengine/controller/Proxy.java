@@ -6,15 +6,25 @@ import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.sql.Timestamp;
 
 import javax.swing.DefaultListModel;
 
+
+
+import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.io.Stream;
 
 public class Proxy implements Runnable {
 	Socket	client;
 	DefaultListModel messages;
 	Stream	stream	= new Stream();
+	Timestamp timeStamp;
+
+	public Timestamp getTimeStamp()
+	{
+		return timeStamp;
+	}
 
 	public Proxy(Socket client, DefaultListModel messages)
 	{
@@ -29,23 +39,58 @@ public class Proxy implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		timeStamp = Config.getTimeStamp();
 	}
 
 	public Socket getClient()
 	{
 		return client;
 	}
+	
+	public void compareTimeStamps()
+	{
+		while(!Thread.currentThread().isInterrupted())
+		{
+			if(Config.getTimeStamp().getTime() - timeStamp.getTime() > 9000)
+			{	
+				System.out.println("Client Timeout");
+				try
+				{
+					client.close();
+					Thread.currentThread().interrupt();
+				} 
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 
 	@Override
 	public void run()
 	{
 		try
 		{
+			new Thread(new Runnable() 
+			{
+				@Override
+				public void run()
+				{
+					compareTimeStamps();
+				}
+			}).start();;
 			while (!Thread.currentThread().isInterrupted())
 			{
-				String message = (String) stream.getInput().readObject();
-				message = message + "\n";
-				messages.addElement(message);
+				if(stream.getInput().readObject() != null)
+				{
+					String message = (String) stream.getInput().readObject();
+					message = message + "\n";
+					messages.addElement(message);
+					timeStamp = Config.getTimeStamp();
+				}
 			}
 		} 
 		catch (IOException ioe)

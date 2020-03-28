@@ -36,6 +36,11 @@ public class Client
 		return started;
 	}
 
+	public void setStarted(boolean started)
+	{
+		this.started = started;
+	}
+
 	public void disconnect()
 	{
 		try
@@ -62,9 +67,11 @@ public class Client
 		} catch (IOException ioe)
 		{
 			System.out.println(ioe.getMessage());
+			started = false;
 		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
+			started = false;
 		}
 		return "";
 	}
