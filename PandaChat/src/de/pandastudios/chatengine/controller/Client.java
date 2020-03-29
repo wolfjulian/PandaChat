@@ -5,7 +5,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.io.Message;
 import de.pandastudios.chatengine.io.Stream;
@@ -62,6 +61,7 @@ public class Client
 		{
 			while (!Thread.currentThread().isInterrupted())
 			{
+				
 				String message = (String) stream.getInput().readObject();
 				listMessages.addElement(message);
 			}
@@ -81,8 +81,9 @@ public class Client
 	{
 		try
 		{
-			stream.getOutput().writeObject(message);
+			stream.getOutput().writeObject(message.toString());
 			stream.getOutput().flush();
+			Config.setSending(true);
 		} catch (IOException e)
 		{
 			System.out.println("Error write Message!");

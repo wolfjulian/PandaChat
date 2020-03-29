@@ -25,6 +25,7 @@ public class Config {
 	private static InetSocketAddress actualClient;
 	private static String[] input;
 	private static long streamSize = 2048;
+	private static boolean isSending = false;
 	
 	public static long getStreamSize() {
 		return streamSize;
@@ -102,6 +103,20 @@ public class Config {
 		long time = date.getTime();
 		Timestamp ts = new Timestamp(time);
 		return ts;
+	}
+
+
+
+	public static boolean isSending()
+	{
+		return isSending;
+	}
+
+
+
+	public static void setSending(boolean isSending)
+	{
+		Config.isSending = isSending;
 	}
 	
 

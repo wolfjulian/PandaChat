@@ -20,4 +20,8 @@ public class Message {
 		return content.getBytes().length;
 	}
 	
+	public String toString()
+	{
+		return content;
+	}
 }

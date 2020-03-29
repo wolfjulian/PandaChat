@@ -59,20 +59,33 @@ public class Proxy implements Runnable {
 	{
 		while(!Thread.currentThread().isInterrupted())
 		{
-			if(Config.getTimeStamp().getTime() - timeStamp.getTime() > 900000)
+			if(Config.getTimeStamp().getTime() - timeStamp.getTime() > 9000)
 			{	
 				System.out.println("Client Timeout");
-				try
-				{
-					client.close();
+				//try
+				//{
+					//client.close();
 					Thread.currentThread().interrupt();
-				} 
-				catch (IOException e)
-				{
+				//} 
+				//catch (IOException e)
+				//{
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//	e.printStackTrace();
+				//}
 			}
+			//System.out.println(timeStamp);
+//			if(Config.getTimeStamp().getTime() - timeStamp.getTime() < 5000 && Config.isSending() == true)
+//			{
+//				System.out.println("Spam");
+//				try
+//				{
+//					client.close();
+//				} catch (IOException e)
+//				{
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
 		}
 	}
 
@@ -88,6 +101,7 @@ public class Proxy implements Runnable {
 					message = message + "\n";
 					messages.addElement(message);
 					timeStamp = Config.getTimeStamp();
+					Config.setSending(false);
 			}
 		} 
 		catch (IOException ioe)

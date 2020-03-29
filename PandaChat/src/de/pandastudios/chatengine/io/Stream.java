@@ -8,7 +8,7 @@ public class Stream
 {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-
+	
 	public Stream()
 	{
 
