@@ -5,13 +5,16 @@ import java.awt.event.ActionListener;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.controller.Client;
 import de.pandastudios.chatengine.graphics.ClientView;
+import de.pandastudios.chatengine.io.Message;
 
 public class ClientMain
 {
 	ClientView view;
 	Client client;
+	Message msg;
 	
 	public ClientMain()
 	{
@@ -70,9 +73,15 @@ public class ClientMain
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			// TODO Auto-generated method stub
-			client.writeMessage(view.getTextFieldInput().getText());
-			view.getTextFieldInput().setText("");
+			msg = new Message();
+			msg.writeMessage(view.getTextFieldInput().getText());
+			if(msg.getSize() > Config.getStreamSize()) {
+				System.out.println("ERROR TOOOO BIG 2");
+			} else {
+				client.writeMessage(msg);
+				view.getTextFieldInput().setText("");
+			}
+
 		}
 	}
 

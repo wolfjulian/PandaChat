@@ -7,6 +7,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import de.pandastudios.chatengine.config.Config;
+import de.pandastudios.chatengine.io.Message;
 import de.pandastudios.chatengine.io.Stream;
 import de.pandastudios.chatengine.security.IPChecker;
 
@@ -76,7 +77,7 @@ public class Client
 		return "";
 	}
 
-	public void writeMessage(String message)
+	public void writeMessage(Message message)
 	{
 		try
 		{

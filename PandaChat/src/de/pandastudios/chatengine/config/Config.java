@@ -24,7 +24,14 @@ public class Config {
 	private static String nioPath = "/PandaChat/src/de/pandastudios/chatengine/config/banlist";
 	private static InetSocketAddress actualClient;
 	private static String[] input;
+	private static long streamSize = 2048;
 	
+	public static long getStreamSize() {
+		return streamSize;
+	}
+
+
+
 	public static String getNioPath() {
 		return nioPath;
 	}
