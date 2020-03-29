@@ -61,9 +61,6 @@ public class IPChecker
 		compairPastTime(socket);
 	}
 
-	
-
-
 	public InetSocketAddress transformAddress(Socket socket)
 	{
 		SocketAddress sockAddr = socket.getRemoteSocketAddress();
