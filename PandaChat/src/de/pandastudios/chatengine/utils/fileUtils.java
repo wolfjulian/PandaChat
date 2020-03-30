@@ -30,9 +30,8 @@ public class fileUtils
 		try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/de/pandastudios/chatengine/config/banlist")))
 		{
 			String line = "";
-			while (reader != null)
+			while ((line = reader.readLine()) != null)
 			{
-				line = (String) reader.readLine();
 				result.append(line).append("\n");
 			}
 		} 
