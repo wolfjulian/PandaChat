@@ -74,7 +74,6 @@ public class Proxy implements Runnable {
 					e.printStackTrace();
 				}
 			}
-			
 		}
 	}
 

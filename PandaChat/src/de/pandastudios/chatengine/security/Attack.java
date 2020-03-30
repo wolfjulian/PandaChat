@@ -31,7 +31,8 @@ public class Attack
 				try
 				{
 					createClients();
-				} catch (UnknownHostException | SocketException e)
+				} 
+				catch (UnknownHostException | SocketException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -40,7 +41,8 @@ public class Attack
 		});
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		// TODO Auto-generated method stub
 		new Attack();
 	}

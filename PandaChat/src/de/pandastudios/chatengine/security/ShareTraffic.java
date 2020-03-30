@@ -9,7 +9,8 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 public class ShareTraffic implements Runnable{
-	public static double getProcessCpuLoad() throws Exception {
+	public static double getProcessCpuLoad() throws Exception 
+	{
 
 	    MBeanServer mbs    = ManagementFactory.getPlatformMBeanServer();
 	    ObjectName name    = ObjectName.getInstance("java.lang:type=OperatingSystem");
@@ -28,19 +29,21 @@ public class ShareTraffic implements Runnable{
 
 	@Override
 	public void run() {
-		while (!Thread.currentThread().isInterrupted()) {
-			try {
-				if(getProcessCpuLoad() > 80) {
+		while (!Thread.currentThread().isInterrupted()) 
+		{
+			try 
+			{
+				if(getProcessCpuLoad() > 80) 
+				{
 					//ANFRAGE BEI NEUEM SERVER!
 				}
 				Thread.currentThread().sleep(30000);
-			} catch (Exception e) {
+			} 
+			catch (Exception e) 
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
-
-		
 	}
 }

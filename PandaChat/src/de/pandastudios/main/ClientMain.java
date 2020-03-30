@@ -40,9 +40,12 @@ public class ClientMain
 		{
 			if (!client.connected())
 			{
-				try {
+				try 
+				{
 					client.connect();
-				} catch (Exception e1) {
+				} 
+				catch (Exception e1) 
+				{
 
 					e1.printStackTrace();
 				}
@@ -75,17 +78,20 @@ public class ClientMain
 		{
 			msg = new Message();
 			msg.writeMessage(view.getTextFieldInput().getText());
-			if(msg.getSize() > Config.getStreamSize()) {
-				System.out.println("ERROR TOOOO BIG 2");
-			} else {
+			if(msg.getSize() > Config.getStreamSize()) 
+			{
+				System.out.println("ERROR to big for sending");
+			} 
+			else 
+			{
 				client.writeMessage(msg);
 				view.getTextFieldInput().setText("");
 			}
-
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		// TODO Auto-generated method stub
 		new ClientMain();
 	}

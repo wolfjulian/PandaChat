@@ -14,18 +14,21 @@ public class PortScanner implements Runnable{
 	
 
 	@Override
-	public void run() {
-		for(int i = pStart; i < pEnd; i++) {
-			try {
+	public void run() 
+	{
+		for(int i = pStart; i < pEnd; i++) 
+		{
+			try 
+			{
 				SocketAddress addr = new InetSocketAddress("localhost", i);
 				Socket sock = new Socket();
 				sock.connect(addr, 200);
 				
-			} catch (Exception e) {
-				
+			} 
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
 			}
 		}
-		
 	}
-	
 }

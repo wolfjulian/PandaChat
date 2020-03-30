@@ -2,21 +2,25 @@ package de.pandastudios.chatengine.io;
 
 import de.pandastudios.chatengine.config.Config;
 
-public class Message {
+public class Message 
+{
 	
 	private String content;
 	
-	public Message() {
+	public Message() 
+	{
 
 	}
 	
-	public String writeMessage(String content) {
+	public String writeMessage(String content) 
+	{
 		this.content = content;
 		
 		return content;
 	}
 	
-	public long getSize() {
+	public long getSize() 
+	{
 		return content.getBytes().length;
 	}
 	

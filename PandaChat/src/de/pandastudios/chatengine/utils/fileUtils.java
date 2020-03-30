@@ -35,7 +35,8 @@ public class fileUtils
 				try
 				{
 					line = (String) reader.readObject();
-				} catch (ClassNotFoundException e)
+				} 
+				catch (ClassNotFoundException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -77,6 +78,7 @@ public class fileUtils
 		try (ObjectOutputStream writer = new ObjectOutputStream(new BufferedOutputStream(Files.newOutputStream(p))))
 		{
 			writer.writeObject(content);
+			writer.writeObject("\n");
 			writer.flush();
 		} 
 		catch (IOException e)

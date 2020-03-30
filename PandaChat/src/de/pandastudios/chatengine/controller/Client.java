@@ -46,10 +46,12 @@ public class Client
 		try
 		{
 			client.close();
-		} catch (IOException ioe)
+		} 
+		catch (IOException ioe)
 		{
 			System.out.println(ioe.getMessage());
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
@@ -65,11 +67,13 @@ public class Client
 				String message = (String) stream.getInput().readObject();
 				listMessages.addElement(message);
 			}
-		} catch (IOException ioe)
+		} 
+		catch (IOException ioe)
 		{
 			System.out.println(ioe.getMessage());
 			started = false;
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 			started = false;
@@ -84,7 +88,8 @@ public class Client
 			stream.getOutput().writeObject(message.toString());
 			stream.getOutput().flush();
 			Config.setSending(true);
-		} catch (IOException e)
+		} 
+		catch (IOException e)
 		{
 			System.out.println("Error write Message!");
 		}

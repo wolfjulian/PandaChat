@@ -21,37 +21,44 @@ public class Config {
 	private static int countClients;
 	private static int maxClients = 2;
 	//private static String path = "C:\\Users\\Admin\\git\\PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
-	private static String nioPath = "/PandaChat/src/de/pandastudios/chatengine/config/banlist";
+	//private static String nioPath = "/PandaChat/src/de/pandastudios/chatengine/config/banlist";
+	private static String nioPath = "PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
 	private static InetSocketAddress actualClient;
 	private static String[] input;
 	private static long streamSize = 2048;
 	private static boolean isSending = false;
 	
-	public static long getStreamSize() {
+	public static long getStreamSize() 
+	{
 		return streamSize;
 	}
 
 
 
-	public static String getNioPath() {
+	public static String getNioPath()
+	{
 		return nioPath;
 	}
 
 
 
-	public static String[] getInput() {
+	public static String[] getInput() 
+	{
 		return input;
 	}
 
-	public static void setInput(String[] input) {
+	public static void setInput(String[] input) 
+	{
 		Config.input = input;
 	}
 
-	public static void setActualClient(InetSocketAddress actualClient) {
+	public static void setActualClient(InetSocketAddress actualClient) 
+	{
 		Config.actualClient = actualClient;
 	}
 
-	public static InetSocketAddress getActualClient() {
+	public static InetSocketAddress getActualClient() 
+	{
 		return actualClient;
 	}
 
@@ -80,15 +87,18 @@ public class Config {
 		return isRunning;
 	}
 
-	public static ArrayList<Proxy> getpArray() {
+	public static ArrayList<Proxy> getpArray() 
+	{
 		return pArray;
 	}
 
-	public static ArrayList<String> getMacArray() {
+	public static ArrayList<String> getMacArray() 
+	{
 		return macArray;
 	}
 
-	public static HashMap<InetAddress, Timestamp> getMap() {
+	public static HashMap<InetAddress, Timestamp> getMap() 
+	{
 		return map;
 	}
 

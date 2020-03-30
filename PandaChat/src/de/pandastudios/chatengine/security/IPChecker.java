@@ -37,7 +37,8 @@ public class IPChecker
 					// schreibe IP in die Banliste
 					// prüfe im Server ob die Ip des Sockets in der Liste steht
 					
-				} catch (IOException e)
+				} 
+				catch (IOException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();

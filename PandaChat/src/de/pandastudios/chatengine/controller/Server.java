@@ -62,16 +62,15 @@ public class Server
 					Thread t1 = new Thread(p);
 					t1.start();
 					Config.getpArray().add(p);
-					Config.setCountClients(Config.getCountClients() + 1);
-					
+					Config.setCountClients(Config.getCountClients() + 1);	
 				}
 			}
-			
-			
-		} catch (IOException ioe)
+		} 
+		catch (IOException ioe)
 		{
 			JOptionPane.showMessageDialog(null, ioe.getMessage(), "IOExceptionS", JOptionPane.INFORMATION_MESSAGE);
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Exception", JOptionPane.INFORMATION_MESSAGE);
 		}

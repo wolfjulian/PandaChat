@@ -133,15 +133,19 @@ public class ServerView extends JFrame
 	{
 		getTextFieldPort().addActionListener(listener);
 	}
-	public JList getList() {
-		if (list == null) {
+	public JList getList() 
+	{
+		if (list == null) 
+		{
 			list = new JList();
 			list.setBounds(20, 36, 308, 157);
 		}
 		return list;
 	}
-	public JScrollPane getScrollPane() {
-		if (scrollPane == null) {
+	public JScrollPane getScrollPane() 
+	{
+		if (scrollPane == null) 
+		{
 			scrollPane = new JScrollPane();
 			scrollPane.setBounds(20, 36, 308, 157);
 		}
