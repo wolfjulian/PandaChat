@@ -13,7 +13,10 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+
+import de.pandastudios.chatengine.config.Config;
 
 
 
@@ -21,32 +24,21 @@ public class fileUtils
 {
 	
 	public static String loadAsString(String path)
-	{
-		FileSystem fs = FileSystems.getDefault();
-		Path p = fs.getPath(path);
-		
+	{		
 		StringBuilder result = new StringBuilder();
 		
-		try (ObjectInputStream reader = new ObjectInputStream(Files.newInputStream((p))))
+		try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/de/pandastudios/chatengine/config/banlist")))
 		{
 			String line = "";
 			while (reader != null)
 			{
-				try
-				{
-					line = (String) reader.readObject();
-				} 
-				catch (ClassNotFoundException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				line = (String) reader.readLine();
 				result.append(line).append("\n");
 			}
 		} 
 		catch (IOException e)
 		{
-			System.err.println("Couldn't find the file at " + p);
+			System.err.println("Couldn't find the file at " );
 		}
 		return result.toString();
 	}

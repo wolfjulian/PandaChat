@@ -5,6 +5,8 @@ import java.io.StringReader;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class Config {
 	private static int maxClients = 2;
 	//private static String path = "C:\\Users\\Admin\\git\\PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
 	//private static String nioPath = "/PandaChat/src/de/pandastudios/chatengine/config/banlist";
-	private static String nioPath = "PandaChat\\PandaChat\\src\\de\\pandastudios\\chatengine\\config\\banlist";
+	private static String nioPath = "/PandaChat/src/banlist";
 	private static InetSocketAddress actualClient;
 	private static String[] input;
 	private static long streamSize = 2048;
