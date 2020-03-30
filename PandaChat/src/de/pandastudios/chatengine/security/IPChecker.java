@@ -30,7 +30,7 @@ public class IPChecker
 			{
 				try
 				{
-					fileUtils.writeAsString(Config.getPath(), transformAddress(socket).getAddress().toString());
+					fileUtils.writeAsString(Config.getNioPath(), transformAddress(socket).getAddress().toString());
 					//System.out.println(fileUtils.loadAsString(Config.getPath()));
 					socket.close();
 					

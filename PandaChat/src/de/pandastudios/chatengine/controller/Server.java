@@ -47,7 +47,8 @@ public class Server
 				{
 					client = server.accept();
 					Config.setActualClient(ipCh.transformAddress(client));
-					Config.setInput(fileUtils.loadAsString(Config.getPath()).split("\n"));
+					Config.setInput(fileUtils.loadAsString(Config.getNioPath()).split("\n"));
+					//Config.setInput(fileUtils.loadAsString(Config.getPath()).split("\n"));
 					for (int i = 0; i < Config.getInput().length; i++)
 					{
 						if (Config.getActualClient().getAddress().toString().equals(Config.getInput()[i]))
