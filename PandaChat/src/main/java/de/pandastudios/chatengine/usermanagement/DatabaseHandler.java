@@ -29,7 +29,7 @@ public class DatabaseHandler {
 	public void loadUser(String name, String passwort) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection con = DriverManager.getConnection("jdbc:ucanaccess://D:/PandaChat.accdb");
+			Connection con = DriverManager.getConnection("jdbc:ucanaccess://src/main/resources/PandaChat.accdb");
 
 			//Statement geilesStatement = con.createStatement();
 			//geilesStatement.execute("INSERT INTO User (Benutzername, Chatname, Passwort, RegistriertSeit, GebanntBis, Moderator, Admin) "
