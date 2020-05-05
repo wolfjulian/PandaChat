@@ -35,7 +35,7 @@ public class IPChecker
 					socket.close();
 					
 					// schreibe IP in die Banliste
-					// prüfe im Server ob die Ip des Sockets in der Liste steht
+					// pruefe im Server ob die Ip des Sockets in der Liste steht
 					
 				} 
 				catch (IOException e)
