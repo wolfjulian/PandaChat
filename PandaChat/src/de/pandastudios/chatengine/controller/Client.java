@@ -3,6 +3,8 @@ package de.pandastudios.chatengine.controller;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import de.pandastudios.chatengine.config.Config;
@@ -94,4 +96,41 @@ public class Client
 			System.out.println("Error write Message!");
 		}
 	}
+	
+	public void writeImgMessage(Message message)
+	{
+		
+		try
+		{
+			ImageIO.write(message.getBimg(),"JPG",client.getOutputStream());
+			System.out.println("1. Succes");
+		}catch(IOException e)
+		{
+			System.out.println("Error write client.IMGMessage !");
+		}
+	}
+	public String getImgMessage(DefaultListModel listMessages)
+	{
+		try
+		{
+			while (!Thread.currentThread().isInterrupted())
+			{
+				
+				String message = (String) stream.getInput().readObject();
+				listMessages.addElement(message);
+			}
+		} 
+		catch (IOException ioe)
+		{
+			System.out.println(ioe.getMessage());
+			started = false;
+		} 
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+			started = false;
+		}
+		return "";
+	}
+	
 }
