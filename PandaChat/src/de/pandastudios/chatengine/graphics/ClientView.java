@@ -30,6 +30,7 @@ public class ClientView extends JFrame
 	private JList					listMessages;
 	private DefaultListModel		messageList		= new DefaultListModel();
 	private DefaultComboBoxModel	idmodel			= new DefaultComboBoxModel();
+	private JButton 				btnSendImg;
 
 	public ClientView()
 	{
@@ -46,6 +47,11 @@ public class ClientView extends JFrame
 		getBtnStart().addActionListener(listener);
 	}
 
+	public void btnSendImgAddActionListener(ActionListener listener)
+	{
+		getBtnSendImg().addActionListener(listener);
+	}
+	
 	public JButton getBtnSend()
 	{
 		if (btnSend == null)
@@ -128,6 +134,15 @@ public class ClientView extends JFrame
 		}
 		return textFieldInput;
 	}
+	private JButton getBtnSendImg()
+	{
+		if (btnSendImg == null)
+		{
+			btnSendImg = new JButton("Send Img");
+		}
+		return btnSendImg;
+	}
+
 
 	private void initialize()
 	{
@@ -166,6 +181,7 @@ public class ClientView extends JFrame
 		gbc_btnStart.gridy = 2;
 		contentPane.add(getBtnStart(), gbc_btnStart);
 		GridBagConstraints gbc_lblInputText = new GridBagConstraints();
+		gbc_lblInputText.gridwidth = 3;
 		gbc_lblInputText.anchor = GridBagConstraints.WEST;
 		gbc_lblInputText.insets = new Insets(0, 0, 5, 5);
 		gbc_lblInputText.gridx = 1;
@@ -178,6 +194,11 @@ public class ClientView extends JFrame
 		gbc_textFieldInput.gridx = 1;
 		gbc_textFieldInput.gridy = 5;
 		contentPane.add(getTextFieldInput(), gbc_textFieldInput);
+		GridBagConstraints gbc_btnSendImg = new GridBagConstraints();
+		gbc_btnSendImg.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSendImg.gridx = 8;
+		gbc_btnSendImg.gridy = 6;
+		contentPane.add(getBtnSendImg(), gbc_btnSendImg);
 		GridBagConstraints gbc_btnSend = new GridBagConstraints();
 		gbc_btnSend.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnSend.insets = new Insets(0, 0, 5, 5);
@@ -197,4 +218,5 @@ public class ClientView extends JFrame
 		gbc_listMessages.gridy = 9;
 		contentPane.add(getListMessages(), gbc_listMessages);
 	}
+
 }

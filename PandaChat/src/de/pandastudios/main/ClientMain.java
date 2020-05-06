@@ -1,9 +1,15 @@
 package de.pandastudios.main;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.controller.Client;
@@ -31,6 +37,9 @@ public class ClientMain
 		view.btnStartAddActionListener(btnStart);
 		BtnSendActionListener btnSenden = new BtnSendActionListener();
 		view.btnSendAddActionListener(btnSenden);
+		BtnSendImgActionListener btnSendImg = new BtnSendImgActionListener();
+		view.btnSendImgAddActionListener(btnSendImg);
+		
 	}
 	
 	public class BtnClientStartActionListener implements ActionListener
@@ -88,6 +97,42 @@ public class ClientMain
 				view.getTextFieldInput().setText("");
 			}
 		}
+	}
+	
+	//Actionlistener für den Hinzugefügten buttonImg
+	public class BtnSendImgActionListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			// In fileUtils.java
+			JFileChooser chooser = new JFileChooser();
+			int rueckgabewert = chooser.showDialog(null, "Datei auswählen");
+			
+			if(rueckgabewert == JFileChooser.APPROVE_OPTION)
+			{
+				
+				msg = new Message();
+				msg.writeImage(chooser.getSelectedFile().getPath());
+				
+				if(msg.getSize() > Config.getStreamSize()) 
+				{
+					System.out.println("ERROR to big for sending");
+				} 
+				else 
+				{
+					client.writeImgMessage(msg);
+					view.getTextFieldInput().setText("");
+				}
+			}
+			
+		}
+
+
+		
+
+		
+		
 	}
 
 	public static void main(String[] args) 
