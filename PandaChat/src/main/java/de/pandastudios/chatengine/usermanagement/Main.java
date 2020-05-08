@@ -1,4 +1,6 @@
 package de.pandastudios.chatengine.usermanagement;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,9 +17,17 @@ public class Main
 			try
 			{
 				user.loadUser(ui.getTextName().getText(), ui.getTextPassword().getText());
-			} catch(Throwable throwable)
+			} catch(PasswordIncorrectException passwordIncorrectException)
 			{
-				throwable.printStackTrace();
+				passwordIncorrectException.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Passwort nicht korrekt!");
+			} catch(UserNotFoundException userNotFoundException)
+			{
+				userNotFoundException.printStackTrace();
+				JOptionPane.showMessageDialog(null, "User nicht gefunden!");
+			} catch(ResultException resultException)
+			{
+				resultException.printStackTrace();
 			}
 		});
 	}

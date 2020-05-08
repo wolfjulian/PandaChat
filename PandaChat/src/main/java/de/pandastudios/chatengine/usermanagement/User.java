@@ -39,8 +39,8 @@ public class User {
 		databaseHandler = DatabaseHandler.getInstance();
 	}
 
-	//TODO: Create own Exceptions
-	public void loadUser(String benutzername, String password) throws Throwable
+
+	public void loadUser(String benutzername, String password) throws PasswordIncorrectException, ResultException, UserNotFoundException
 	{
 		try
 		{
@@ -55,7 +55,7 @@ public class User {
 				i++;
 				//abbrechen, falls zu viele Einträge gefunden wurden - eigentlich unmöglich aber Vorsicht ist immer besser als Nachsicht.
 				if(i > 1)
-					throw new Exception("ResultException");
+					throw new ResultException("Zu viele Eintraege gefunden!");
 
 				this.benutzername = rs.getString(2);
 				this.chatname = rs.getString(3);
@@ -67,13 +67,12 @@ public class User {
 				this.isAdministrator = rs.getBoolean(9);
 			}
 
+			System.out.println(this.benutzername);
 			if(this.benutzername == null)
-				throw new Exception("Kein User gefunden!");
+				throw new UserNotFoundException("Kein User gefunden!");
 
 			if(this.password.compareTo(password) != 0)
-			{
-				throw new Exception("Passwort nicht korrekt!");
-			}
+				throw new PasswordIncorrectException("Passwort nicht korrekt!");
 
 			databaseHandler.getConnection().close();
 
