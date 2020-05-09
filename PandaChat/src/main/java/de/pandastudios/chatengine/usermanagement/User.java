@@ -93,7 +93,7 @@ public class User {
 			//INSERT INTO [User] (Benutzername, [Chatname], [Passwort], [RegistriertSeit])
 			//VALUES ('febel','febel','febel',Date())
 			Statement statement = databaseHandler.getConnection().createStatement();
-			statement.executeQuery("INSERT INTO [User] (Benutzername, [Chatname], [Passwort], [RegistriertSeit])\n VALUES ('" +
+			statement.execute("INSERT INTO [User] (Benutzername, [Chatname], [Passwort], [RegistriertSeit])\n VALUES ('" +
 					benutzername +"','"+chatname+"','"+password+"',Date())");
 
 		} catch(SQLException e)
@@ -102,6 +102,24 @@ public class User {
 		}
 
 	}
+	
+	public void changeUser(String chatname, String password)
+	{
+		try
+		{
+			//INSERT INTO [User] (Benutzername, [Chatname], [Passwort], [RegistriertSeit])
+			//VALUES ('febel','febel','febel',Date())
+			Statement statement = databaseHandler.getConnection().createStatement();
+			statement.execute("UPDATE [User] SET [Chatname] = " + chatname + ", [Passwort] = " + password + ")\n"
+					+ "WHERE [Benutzername] = " + getBenutzername());
+
+		} catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+	}
+	
 
 	public String getBenutzername()
 	{
