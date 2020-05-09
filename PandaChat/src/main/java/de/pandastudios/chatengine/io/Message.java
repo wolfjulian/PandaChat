@@ -27,17 +27,19 @@ public class Message
 		return content;
 	}
 	
-	public void writeImage(String path)
+	public void writeImage(File img)
 	{
-		this.content = path;
-		File img = new File(content);
+
+			
+		
 		bimg = new BufferedImage(240, 240, BufferedImage.TYPE_INT_ARGB);
 		try {
 			bimg = ImageIO.read(img);
 		}catch(IOException e)
 		{
 			System.out.println("Error creating Image in Message.writeImage()");
-		}	
+		}
+
 	}
 	public BufferedImage getBimg()
 	{

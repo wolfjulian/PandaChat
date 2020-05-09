@@ -15,12 +15,14 @@ import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.controller.Client;
 import de.pandastudios.chatengine.graphics.ClientView;
 import de.pandastudios.chatengine.io.Message;
+import de.pandastudios.chatengine.utils.fileUtils;
 
 public class ClientMain
 {
 	ClientView view;
 	Client client;
 	Message msg;
+	
 	
 	public ClientMain()
 	{
@@ -102,37 +104,29 @@ public class ClientMain
 	//Actionlistener für den Hinzugefügten buttonImg
 	public class BtnSendImgActionListener implements ActionListener
 	{
+		//Muss überarbeitet werden
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			// In fileUtils.java
-			JFileChooser chooser = new JFileChooser();
-			int rueckgabewert = chooser.showDialog(null, "Datei auswählen");
-			
-			if(rueckgabewert == JFileChooser.APPROVE_OPTION)
+
+			try
 			{
-				
-				msg = new Message();
-				msg.writeImage(chooser.getSelectedFile().getPath());
-				
-				if(msg.getSize() > Config.getStreamSize()) 
-				{
-					System.out.println("ERROR to big for sending");
-				} 
-				else 
-				{
-					client.writeImgMessage(msg);
-					view.getTextFieldInput().setText("");
-				}
+				msg.writeImage(fileUtils.openFileChooser());
+				if(msg.getSize() > Config.getStreamSize())
+			{
+				System.out.println("Error to big for sending");
+			}
+			else
+			{
+				client.writeImgMessage(msg);
 			}
 			
+			} catch (NullPointerException e2)
+			{
+			e2.printStackTrace();
+			}
 		}
 
-
-		
-
-		
-		
 	}
 
 	public static void main(String[] args) 

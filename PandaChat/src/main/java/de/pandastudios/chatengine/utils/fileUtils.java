@@ -3,6 +3,9 @@ package de.pandastudios.chatengine.utils;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +19,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import de.pandastudios.chatengine.config.Config;
+import de.pandastudios.chatengine.io.Message;
 
 
 
@@ -89,4 +96,26 @@ public class fileUtils
 //			System.err.println("Couldn't find the file at " + path);
 //		}
 //	}
+	
+	
+	public static File openFileChooser()
+	{
+	
+		
+		File f;// = new File(uploadfailed.jpg);
+		JFileChooser chooser = new JFileChooser();
+		FileFilter filter = new FileNameExtensionFilter("Bilder","gif","png","jpg");
+		chooser.addChoosableFileFilter(filter);
+		System.out.println(chooser.getSelectedFile().getPath());
+		int rueckgabewert = chooser.showDialog(null, "Datei auswählen");
+		
+		if(rueckgabewert == JFileChooser.APPROVE_OPTION)
+		{
+			
+			return chooser.getSelectedFile();
+		}
+		return f;
+	}
+		
+				
 }
