@@ -12,8 +12,11 @@ public class Main
 		ui.setVisible(true);
 		User user = new User();
 
+		user.createUser("febel","febel","febel");
+
 		ui.getBtnLogin().addActionListener(e->
 		{
+
 			try
 			{
 				user.loadUser(ui.getTextName().getText(), ui.getTextPassword().getText());

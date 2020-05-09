@@ -1,5 +1,7 @@
 package de.pandastudios.chatengine.usermanagement;
 
+import org.hsqldb.types.TimeData;
+
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,11 +78,29 @@ public class User {
 
 			databaseHandler.getConnection().close();
 
-		} catch(SQLException e){
+		} catch(SQLException e)
+		{
 			e.printStackTrace();
 			System.out.println("SQL Fehlerhaft");
-
 		}
+
+	}
+
+	public void createUser(String benutzername, String chatname, String password)
+	{
+		try
+		{
+			//INSERT INTO [User] (Benutzername, [Chatname], [Passwort], [RegistriertSeit])
+			//VALUES ('febel','febel','febel',Date())
+			Statement statement = databaseHandler.getConnection().createStatement();
+			statement.executeQuery("INSERT INTO [User] (Benutzername, [Chatname], [Passwort], [RegistriertSeit])\n VALUES ('" +
+					benutzername +"','"+chatname+"','"+password+"',Date())");
+
+		} catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+
 	}
 
 	public String getBenutzername()

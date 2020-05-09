@@ -23,6 +23,7 @@ public class UiLogin extends JFrame {
 
 
 	public UiLogin() {
+		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 251, 137);
 		contentPane = new JPanel();
