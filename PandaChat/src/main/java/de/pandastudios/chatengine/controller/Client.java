@@ -3,7 +3,6 @@ package de.pandastudios.chatengine.controller;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Timer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -36,6 +35,7 @@ public class Client
 		JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
 		started = true;
 		stream.setUpStream(client);
+		//Timer fürs 1. Mal starten
 		watch.start();
 	}
 
@@ -95,9 +95,8 @@ public class Client
 		{
 			stream.getOutput().writeObject(message.toString());
 			stream.getOutput().flush();
-			//Timerstart für Spamschutz
+			//Timerstart für erneuten Spamschutz, nach senden einer Nachricht
 			watch.start();
-			//Config.setSending(true);
 		} 
 		catch (IOException e)
 		{

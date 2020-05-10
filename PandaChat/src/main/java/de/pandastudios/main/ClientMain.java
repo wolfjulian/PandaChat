@@ -84,15 +84,19 @@ public class ClientMain
 			} 
 			else 
 			{
+				//Stoppen des Timers
 				client.watch.stop();
+				//Überprüfen, ob die Zeit zwischen den Nachrichten 2 Sekunden überschreitet
 				if(client.watch.getTime() < 2000)
 				{
+					//Falls Ja - Fehlermeldung und zurücksetzten des Timers, sowie neu aufruf
 					System.out.println("Spam protection - try again in a few seconds");
 					client.watch.reset();
 					client.watch.start();
 				}
 				else
 				{
+					//Falls Nein - Zurücksetzten des Timers & Nachricht versenden 
 					client.watch.reset();
 					client.writeMessage(msg);
 					view.getTextFieldInput().setText("");	
