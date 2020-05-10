@@ -16,7 +16,7 @@ public class Attack
 	{
 		while (!Thread.currentThread().isInterrupted())
 		{
-			//new ClientMain().getClient().writeMessage("DDOS");
+			//new ChatMain().getClient().writeMessage("DDOS");
 		}
 	}
 
