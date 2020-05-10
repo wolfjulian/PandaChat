@@ -84,8 +84,20 @@ public class ClientMain
 			} 
 			else 
 			{
-				client.writeMessage(msg);
-				view.getTextFieldInput().setText("");
+				client.watch.stop();
+				if(client.watch.getTime() < 2000)
+				{
+					System.out.println("Spam protection - try again in a few seconds");
+					client.watch.reset();
+					client.watch.start();
+				}
+				else
+				{
+					client.watch.reset();
+					client.writeMessage(msg);
+					view.getTextFieldInput().setText("");	
+				}
+				
 			}
 		}
 	}

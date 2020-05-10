@@ -3,8 +3,13 @@ package de.pandastudios.chatengine.controller;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Timer;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+
+import org.apache.commons.lang3.time.StopWatch;
+
 import de.pandastudios.chatengine.config.Config;
 import de.pandastudios.chatengine.io.Message;
 import de.pandastudios.chatengine.io.Stream;
@@ -17,6 +22,8 @@ public class Client
 	boolean		started	= false;
 	Stream		stream	= new Stream();
 	IPChecker	mac		= new IPChecker();
+	//Timer für den Spamschutz
+	public StopWatch watch = new StopWatch();
 
 	public Client()
 	{
@@ -29,6 +36,7 @@ public class Client
 		JOptionPane.showMessageDialog(null, "Client Connected to Server!", "", JOptionPane.INFORMATION_MESSAGE);
 		started = true;
 		stream.setUpStream(client);
+		watch.start();
 	}
 
 	public boolean connected()
@@ -87,7 +95,9 @@ public class Client
 		{
 			stream.getOutput().writeObject(message.toString());
 			stream.getOutput().flush();
-			Config.setSending(true);
+			//Timerstart für Spamschutz
+			watch.start();
+			//Config.setSending(true);
 		} 
 		catch (IOException e)
 		{
