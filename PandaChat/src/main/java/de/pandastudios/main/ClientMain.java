@@ -118,13 +118,13 @@ public class ClientMain
 					msg.writeImage(f);
 					if(msg.getSize() > Config.getStreamSize())
 					{
-						System.out.println("Error to big for sending");
+						System.out.println("Error to Img big for sending");
 					}
 					else
 					{
 						//client.writeImgMessage(msg);
 					}
-				}else { System.out.println("no FIle selected");}
+				}else { System.out.println("no File selected ClientMain");}
 			
 			} catch (NullPointerException e2)
 			{
