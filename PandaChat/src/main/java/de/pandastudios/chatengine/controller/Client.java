@@ -93,44 +93,44 @@ public class Client
 		} 
 		catch (IOException e)
 		{
-			System.out.println("Error write Message!");
+			System.out.println("Error write Message! in Client.Java");
 		}
 	}
 	
-	public void writeImgMessage(Message message)
-	{
-		
-		try
-		{
-			ImageIO.write(message.getBimg(),"JPG",client.getOutputStream());
-			System.out.println("1. Succes");
-		}catch(IOException e)
-		{
-			System.out.println("Error write client.IMGMessage !");
-		}
-	}
-	public String getImgMessage(DefaultListModel listMessages)
-	{
-		try
-		{
-			while (!Thread.currentThread().isInterrupted())
-			{
-				
-				String message = (String) stream.getInput().readObject();
-				listMessages.addElement(message);
-			}
-		} 
-		catch (IOException ioe)
-		{
-			System.out.println(ioe.getMessage());
-			started = false;
-		} 
-		catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-			started = false;
-		}
-		return "";
-	}
+//	public void writeImgMessage(Message message)
+//	{
+//		
+//		try
+//		{
+//			ImageIO.write(message.getBimg(),"JPG",client.getOutputStream());
+//			System.out.println("1. Succes");
+//		}catch(IOException e)
+//		{
+//			System.out.println("Error write client.IMGMessage !");
+//		}
+//	}
+//	public String getImgMessage(DefaultListModel listMessages)
+//	{
+//		try
+//		{
+//			while (!Thread.currentThread().isInterrupted())
+//			{
+//				
+//				String message = (String) stream.getInput().readObject();
+//				listMessages.addElement(message);
+//			}
+//		} 
+//		catch (IOException ioe)
+//		{
+//			System.out.println(ioe.getMessage());
+//			started = false;
+//		} 
+//		catch (Exception e)
+//		{
+//			System.out.println(e.getMessage());
+//			started = false;
+//		}
+//		return "";
+//	}
 	
 }

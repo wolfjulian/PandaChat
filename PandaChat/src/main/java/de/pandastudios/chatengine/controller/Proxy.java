@@ -113,17 +113,17 @@ public class Proxy implements Runnable {
 			System.out.println("Error write Message! @Proxy");
 		}
 	}
-	public void writeImgMessage(String message)
-	{
-		try
-		{
-		stream.getOutput().writeObject(message);
-		stream.getOutput().flush();
-		}
-		catch(IOException e)
-		{
-			System.out.println("Error write ImgMessage @Proxy");
-		}
-	}
+//	public void writeImgMessage(String message)
+//	{
+//		try
+//		{
+//		stream.getOutput().writeObject(message);
+//		stream.getOutput().flush();
+//		}
+//		catch(IOException e)
+//		{
+//			System.out.println("Error write ImgMessage @Proxy");
+//		}
+//	}
 	
 }

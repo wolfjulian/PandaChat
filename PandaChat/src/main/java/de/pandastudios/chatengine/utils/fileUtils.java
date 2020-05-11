@@ -102,19 +102,21 @@ public class fileUtils
 	{
 	
 		
-		File f;// = new File(uploadfailed.jpg);
 		JFileChooser chooser = new JFileChooser();
+		File f;
 		FileFilter filter = new FileNameExtensionFilter("Bilder","gif","png","jpg");
 		chooser.addChoosableFileFilter(filter);
-		System.out.println(chooser.getSelectedFile().getPath());
 		int rueckgabewert = chooser.showDialog(null, "Datei auswählen");
-		
-		if(rueckgabewert == JFileChooser.APPROVE_OPTION)
-		{
-			
-			return chooser.getSelectedFile();
-		}
+		f= chooser.getSelectedFile();
+		System.out.println(chooser.getSelectedFile().getPath());
 		return f;
+		
+//		if(rueckgabewert == JFileChooser.APPROVE_OPTION)
+//		{
+//			
+//			return chooser.getSelectedFile();
+//		}
+//		return f;
 	}
 		
 				
