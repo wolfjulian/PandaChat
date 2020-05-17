@@ -80,6 +80,10 @@ public class RegisterScene implements Initializable
     public void createNewUser(ActionEvent e) throws IOException
     {
         //hier der Code zum UserRegister und erstellen der Verbindung zum Server
+        String user = textFieldUsername.getText();
+        String chatname = textFieldChatname.getText();
+        String password = textFieldPasswort.getText();
+        String passwordWdh = textFieldPasswortWdh.getText();
 
         //öffnen der ChatGui nach erfolgreichem Registrieren
         Stage stage;

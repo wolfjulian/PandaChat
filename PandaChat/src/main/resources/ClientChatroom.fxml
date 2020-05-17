@@ -11,6 +11,7 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.image.ImageView?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.pandastudios.chatengine.fxGraphics.clientGui.chatroomPackage.ClientChatroom">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -37,13 +38,16 @@
             <Button fx:id="buttonExtra" layoutX="341.0" layoutY="310.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
             <ScrollPane prefHeight="300.0" prefWidth="420.0">
                <content>
-                  <VBox fx:id="chatBox" prefHeight="300.0" prefWidth="420.0" />
+                  <VBox fx:id="chatBox" prefHeight="300.0" prefWidth="420.0">
+                     <children>
+                        <ImageView fx:id="listImage" fitHeight="300.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
+                     </children></VBox>
                </content>
             </ScrollPane>
             <Button fx:id="buttonSendMessage" layoutX="372.0" layoutY="310.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
             <Button fx:id="buttonEmoji" layoutX="313.0" layoutY="310.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
             <TextArea fx:id="textAreaMessage" layoutX="14.0" layoutY="305.0" prefHeight="46.0" prefWidth="288.0" promptText="Message" />
-            <TextFlow fx:id="emojiList" layoutX="130.0" layoutY="225.0" prefHeight="91.0" prefWidth="260.0" visible="false">
+            <TextFlow fx:id="emojiList" layoutX="130.0" layoutY="225.0" prefHeight="91.0" prefWidth="250.0" visible="false">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😀" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😁" />

@@ -77,6 +77,8 @@ public class LoginScene implements Initializable
     public void createUser(ActionEvent e) throws IOException
     {
         //hier der Code zum Userloin und erstellen der Verbindung zum Server
+        String user = textFieldUsername.getText();
+        String password = textFieldPasswort.getText();
 
         //öffnen der ChatGui nach erfolgreichem Login
         Stage stage;
